@@ -15,7 +15,7 @@ def load_img_arr(inp_name):
     return img_arr.astype('float32')/255., img_list
 
 #---------- 0. User input ----------
-n_clusters = 3 # determined from 2D histogram of all data
+n_clusters = 3               # determined from 2D histogram of all data
 inp_name = "input-files.dat" # files containing the path of all training data
 input_shape = (256, 256, 3)  # img_width, img_height, channels
 
@@ -40,6 +40,7 @@ model.add(Conv2D(3, kernel_size=(3,3), activation='sigmoid', padding='same'))
 # compile and train the model
 model.compile(loss='binary_crossentropy', optimizer='adadelta', metrics=['accuracy'])
 model.fit(X, X, epochs=10, batch_size=5, shuffle=True, verbose=1)
+model.save('cluster-path.h5')
 
 #---------- 2. Retrieve encoded image and classify pathways ----------
 get_encoded_layer = backend.function([model.layers[0].input],[model.layers[5].output])

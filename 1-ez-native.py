@@ -45,7 +45,6 @@ def process_dcd(query_idx, dcd_name):
         ### Process title[NTITLE*80]
         for _ in range(NTITLE):
             fileBuffer = inp_file.read(80)
-            # print fileBuffer
         ### Retrieve NATOM from header2[16]
         fileBuffer = inp_file.read(16)
         NATOM  = struct.unpack("i",fileBuffer[8:12])[0]
